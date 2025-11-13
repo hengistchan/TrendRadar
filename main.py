@@ -3462,13 +3462,25 @@ def send_to_feishu(
         now = get_beijing_time()
 
         payload = {
-            "msg_type": "text",
-            "content": {
-                "total_titles": total_titles,
-                "timestamp": now.strftime("%Y-%m-%d %H:%M:%S"),
-                "report_type": report_type,
-                "text": batch_content,
-            },
+            "msg_type": "interactive",
+            # "content": {
+            #     "total_titles": total_titles,
+            #     "timestamp": now.strftime("%Y-%m-%d %H:%M:%S"),
+            #     "report_type": report_type,
+            #     "text": batch_content,
+            # },
+            "card": {
+                "type": "template",
+                "data": {
+                    "template_id": "AAq7pafx1XBzB",
+                    "template_variable": {
+                        "total_titles": total_titles,
+                        "timestamp": now.strftime("%Y-%m-%d %H:%M:%S"),
+                        "report_type": report_type,
+                        "text": batch_content,
+                    },
+                }
+            }
         }
 
         try:
